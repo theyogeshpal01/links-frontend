@@ -29,7 +29,7 @@ function Navbar({ setAuth }) {
             <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
               Projects <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full mt-1 w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block">
+            <div className="absolute left-0 top-full w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
               <Link to="/projects" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Projects</Link>
               <Link to="/study-types" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Study Type</Link>
             </div>
@@ -40,7 +40,7 @@ function Navbar({ setAuth }) {
             <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
               Company <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full mt-1 w-48 bg-white border shadow-lg rounded py-1 hidden group-hover:block">
+            <div className="absolute left-0 top-full w-48 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
               <Link to="/companies" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Company Management</Link>
               <Link to="/contacts" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Contacts</Link>
               <Link to="/contact-types" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Contact Types</Link>
@@ -52,7 +52,7 @@ function Navbar({ setAuth }) {
             <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
               Analysis <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full mt-1 w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block">
+            <div className="absolute left-0 top-full w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
               <Link to="/analytics" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Analytics Logs</Link>
             </div>
           </div>
