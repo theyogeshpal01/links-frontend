@@ -53,6 +53,7 @@ function Navbar({ setAuth }) {
               Analysis <span className="ml-1 text-[10px]">▼</span>
             </button>
             <div className="absolute left-0 top-full w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
+              <Link to="/analysis/reports" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Reports</Link>
               <Link to="/analytics" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Analytics Logs</Link>
             </div>
           </div>

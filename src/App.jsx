@@ -18,6 +18,7 @@ import ProjectReconcile from './components/ProjectReconcile';
 import ProjectDownload from './components/ProjectDownload';
 import ProjectMapForeignIDs from './components/ProjectMapForeignIDs';
 import Login from './components/Login';
+import AnalysisReports from './components/AnalysisReports';
 
 function Layout({ children, setAuth }) {
   return (
@@ -81,6 +82,7 @@ function App() {
                 <Route path="/contacts" element={<Contacts />} />
                 <Route path="/contact-types" element={<ContactTypes />} />
                 <Route path="/analytics" element={<div className="text-xl font-bold bg-white p-6 rounded shadow">Analysis Logs</div>} />
+                <Route path="/analysis/reports" element={<AnalysisReports />} />
                 
                 {/* Catch all unmatched authenticated routes and send to dashboard */}
                 <Route path="*" element={<Navigate to="/" />} />
