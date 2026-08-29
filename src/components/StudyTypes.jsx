@@ -102,7 +102,7 @@ function StudyTypes() {
       </div>
       {/* Stylish Add Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-blue-900/30 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl w-96">
             <h3 className="text-lg font-bold mb-4 text-gray-800">{editId ? 'Edit Study Type' : 'Add New Study Type'}</h3>
             <input 
@@ -123,7 +123,7 @@ function StudyTypes() {
 
       {/* Stylish Delete Confirm Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-blue-900/30 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-xl w-96">
             <h3 className="text-lg font-bold mb-2 text-gray-800">Confirm Deletion</h3>
             <p className="text-gray-600 mb-6">Are you sure you want to delete this? This action cannot be undone.</p>
