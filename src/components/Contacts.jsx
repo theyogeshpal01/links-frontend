@@ -34,6 +34,8 @@ function Contacts() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  const [editId, setEditId] = useState(null);
+
   const emptyForm = {
     contactTypeId: '', companyId: '', salutation: '', firstName: '', middleName: '',
     lastName: '', gender: '', dateOfBirth: '', email: '', contactNo: '',
@@ -66,13 +68,41 @@ function Contacts() {
     if (!form.firstName) return alert('First Name is required');
     if (!form.email) return alert('Email Address is required');
     try {
-      await api.post('/admin/contacts', form);
+      if (editId) {
+        await api.put(`/admin/contacts/${editId}`, form);
+      } else {
+        await api.post('/admin/contacts', form);
+      }
       setForm(emptyForm);
+      setEditId(null);
       setShowForm(false);
       fetchContacts();
     } catch(err) {
       alert(err.response?.data?.message || err.message || 'Failed to save contact');
     }
+  };
+
+  const openEdit = (c) => {
+    setForm({
+      contactTypeId: c.contactTypeId?._id || '',
+      companyId: c.companyId?._id || '',
+      salutation: c.salutation || '',
+      firstName: c.firstName || '',
+      middleName: c.middleName || '',
+      lastName: c.lastName || '',
+      gender: c.gender || '',
+      dateOfBirth: c.dateOfBirth ? c.dateOfBirth.split('T')[0] : '',
+      email: c.email || '',
+      contactNo: c.contactNo || '',
+      address: c.address || '',
+      city: c.city || '',
+      zipCode: c.zipCode || '',
+      country: c.country || '',
+      state: c.state || '',
+      status: c.status || 'Active'
+    });
+    setEditId(c._id);
+    setShowForm(true);
   };
 
   const confirmDelete = (id) => { setDeleteId(id); setShowDeleteModal(true); };
@@ -96,9 +126,9 @@ function Contacts() {
   return (
     <div className="bg-white p-4 rounded shadow-sm">
       <div className="flex justify-between items-center mb-6 border-b pb-4">
-        <h2 className="text-xl font-bold text-gray-800">{showForm ? 'Add Contact' : 'Contact List'}</h2>
+        <h2 className="text-xl font-bold text-gray-800">{showForm ? (editId ? 'Edit Contact' : 'Add Contact') : 'Contact List'}</h2>
         {!showForm && (
-          <button onClick={() => { setForm(emptyForm); setShowForm(true); }} className="bg-gray-800 text-white px-3 py-1.5 text-sm rounded shadow-sm hover:bg-gray-700">
+          <button onClick={() => { setForm(emptyForm); setEditId(null); setShowForm(true); }} className="bg-gray-800 text-white px-3 py-1.5 text-sm rounded shadow-sm hover:bg-gray-700">
             + New Contact
           </button>
         )}
@@ -257,7 +287,7 @@ function Contacts() {
                       <span className="px-2 py-0.5 rounded text-xs font-semibold bg-green-100 text-green-700">{c.status}</span>
                     </td>
                     <td className="p-3">
-                      <span className="cursor-pointer text-gray-400 hover:text-blue-500 mr-3 inline-flex items-center"><Edit size={16} /></span>
+                      <span className="cursor-pointer text-gray-400 hover:text-blue-500 mr-3 inline-flex items-center" onClick={() => openEdit(c)}><Edit size={16} /></span>
                       <span className="cursor-pointer text-gray-400 hover:text-red-500 inline-flex items-center" onClick={() => confirmDelete(c._id)}><Trash2 size={16} /></span>
                     </td>
                   </tr>
