@@ -22,7 +22,7 @@ function StudyTypes() {
   };
 
   const handleAdd = async () => {
-    if (!newName) return;
+    if (!newName) return alert('Please enter a name');
     try {
       if (editId) {
         await api.put(`/admin/study-types/${editId}`, { name: newName });
@@ -33,7 +33,10 @@ function StudyTypes() {
       setEditId(null);
       setShowAddModal(false);
       fetchTypes();
-    } catch(err) { console.error('Error saving study type'); }
+    } catch(err) { 
+      console.error('Error saving study type:', err); 
+      alert(err.response?.data?.message || err.message || 'Failed to save study type');
+    }
   };
 
   const openNewModal = () => {
