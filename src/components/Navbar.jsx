@@ -14,47 +14,47 @@ function Navbar({ setAuth }) {
   };
 
   return (
-    <nav className="bg-white border-b flex items-center justify-between px-6 py-3 shadow-sm relative z-50">
+    <nav className="relative z-50 flex items-center justify-between px-6 py-3 bg-white border-b shadow-sm">
       <div className="flex items-center space-x-8">
         <div className="flex items-center space-x-1 cursor-pointer">
           <span className="w-4 h-4 bg-orange-400 rounded-full"></span>
           <span className="w-4 h-4 bg-blue-500 rounded-full"></span>
           <span className="w-4 h-4 bg-green-500 rounded-full"></span>
         </div>
-        <div className="hidden md:flex space-x-6 text-sm font-medium text-gray-600">
+        <div className="hidden space-x-6 text-sm font-medium text-gray-600 md:flex">
           <Link to="/" className="hover:text-blue-600">Dashboard</Link>
           
           {/* Projects Dropdown */}
-          <div className="relative group pb-4 -mb-4">
-            <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
+          <div className="relative pb-4 -mb-4 group">
+            <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
               Projects <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
-              <Link to="/projects" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Projects</Link>
-              <Link to="/study-types" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Study Type</Link>
+            <div className="absolute left-0 z-50 hidden w-40 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
+              <Link to="/projects" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Projects</Link>
+              <Link to="/study-types" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">Study Type</Link>
             </div>
           </div>
 
           {/* Company Dropdown */}
-          <div className="relative group pb-4 -mb-4">
-            <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
+          <div className="relative pb-4 -mb-4 group">
+            <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
               Company <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full w-48 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
-              <Link to="/companies" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Company Management</Link>
-              <Link to="/contacts" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Contacts</Link>
-              <Link to="/contact-types" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Contact Types</Link>
+            <div className="absolute left-0 z-50 hidden w-48 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
+              <Link to="/companies" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Company</Link>
+              <Link to="/contacts" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">Contacts</Link>
+              <Link to="/contact-types" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">Contact Types</Link>
             </div>
           </div>
 
           {/* Analysis Dropdown */}
-          <div className="relative group pb-4 -mb-4">
-            <button className="hover:text-blue-600 focus:outline-none flex items-center h-full pt-1">
+          <div className="relative pb-4 -mb-4 group">
+            <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
               Analysis <span className="ml-1 text-[10px]">▼</span>
             </button>
-            <div className="absolute left-0 top-full w-40 bg-white border shadow-lg rounded py-1 hidden group-hover:block z-50">
-              <Link to="/analysis/reports" className="block px-4 py-2 hover:bg-gray-100 text-blue-500">Reports</Link>
-              <Link to="/analytics" className="block px-4 py-2 hover:bg-gray-100 text-gray-600">Analytics Logs</Link>
+            <div className="absolute left-0 z-50 hidden w-40 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
+              <Link to="/analysis/reports" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Reports</Link>
+              <Link to="/analytics" className="block px-4 py-2 text-gray-600 hover:bg-gray-100">Analytics Logs</Link>
             </div>
           </div>
 
@@ -62,7 +62,7 @@ function Navbar({ setAuth }) {
       </div>
       <div className="flex items-center space-x-4">
         <span className="text-sm font-medium text-gray-700">Welcome, Admin TTP</span>
-        <button onClick={handleLogout} className="text-red-500 hover:text-red-700 flex items-center border border-red-200 px-2 py-1 rounded bg-red-50 font-medium text-xs">
+        <button onClick={handleLogout} className="flex items-center px-2 py-1 text-xs font-medium text-red-500 border border-red-200 rounded hover:text-red-700 bg-red-50">
           <LogOut size={14} className="mr-1" /> Logout
         </button>
       </div>
