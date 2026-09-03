@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
 import { Edit, Trash2, Save } from 'lucide-react';
+import { Country, State } from 'country-state-city';
 import { COUNTRIES } from '../utils/countries';
 
 const FULL_COUNTRIES = [
@@ -180,19 +181,19 @@ function Companies() {
                   <label className="block text-red-500 mb-1">Invoicing Method *</label>
                   <select className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" value={form.invoicingMethod} onChange={e => set('invoicingMethod', e.target.value)}>
                     <option value="">Select</option>
-                    <option value="Manual">Manual</option>
-                    <option value="Auto">Auto</option>
+                    <option value="Monthly Basis">Monthly Basis</option>
+                    <option value="Project Basis">Project Basis</option>
                   </select>
                 </div>
                 <div>
                   <label className="block text-red-500 mb-1">Payment terms *</label>
                   <select className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" value={form.paymentTerms} onChange={e => set('paymentTerms', e.target.value)}>
                     <option value="">Select days</option>
-                    <option value="Net 15">Net 15</option>
-                    <option value="Net 30">Net 30</option>
-                    <option value="Net 45">Net 45</option>
-                    <option value="Net 60">Net 60</option>
-                    <option value="Net 90">Net 90</option>
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="45">45</option>
+                    <option value="60">60</option>
+                    <option value="90">90</option>
                   </select>
                 </div>
               </div>
@@ -211,7 +212,10 @@ function Companies() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-red-500 mb-1">Country</label>
-                  <select className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" value={form.country} onChange={e => set('country', e.target.value)}>
+                  <select className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" value={form.country} onChange={e => {
+                    set('country', e.target.value);
+                    set('state', '');
+                  }}>
                     <option value="">Please Select</option>
                     {FULL_COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
@@ -220,8 +224,12 @@ function Companies() {
                   <label className="block text-red-500 mb-1">State</label>
                   <select className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" value={form.state} onChange={e => set('state', e.target.value)}>
                     <option value="">Please Select</option>
-                    <option value="State 1">State 1</option>
-                    <option value="State 2">State 2</option>
+                    {form.country && (() => {
+                      const selectedC = Country.getAllCountries().find(c => c.name === form.country);
+                      return selectedC ? State.getStatesOfCountry(selectedC.isoCode).map(s => (
+                        <option key={s.isoCode || s.name} value={s.name}>{s.name}</option>
+                      )) : null;
+                    })()}
                   </select>
                 </div>
               </div>

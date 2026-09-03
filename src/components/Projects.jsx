@@ -70,28 +70,41 @@ function Projects() {
               <th className="p-2 font-semibold">QF</th>
               <th className="p-2 font-semibold">IR%</th>
               <th className="p-2 font-semibold">LOI</th>
+              <th className="p-2 font-semibold">Status</th>
               <th className="p-2 font-semibold">Action</th>
             </tr>
           </thead>
           <tbody>
             {projects.length === 0 ? (
-              <tr><td colSpan="14" className="p-4 text-center text-gray-500">No data available in table</td></tr>
+              <tr><td colSpan="15" className="p-4 text-center text-gray-500">No data available in table</td></tr>
             ) : projects.map(p => (
               <tr key={p._id} className="border-b hover:bg-gray-50">
                 <td className="p-2">1308</td>
                 <td className="p-2 text-center">0</td>
-                <td className="p-2 text-blue-600 cursor-pointer" onClick={() => navigate(`/projects/${p._id}`)}>{p.name}<br/><span className="text-gray-500 text-[10px]">United States</span></td>
-                <td className="p-2">{p.clientId?.name}</td>
+                <td className="p-2 text-blue-600 cursor-pointer" onClick={() => navigate(`/projects/${p._id}`)}>{p.name}<br/><span className="text-gray-500 text-[10px]">{(p.country && p.country.length > 0) ? p.country.join(', ') : 'United States'}</span></td>
+                <td className="p-2">{p.clientId?.name || 'N/A'}</td>
                 <td className="p-2">Admin /<br/>Sales TTP</td>
                 <td className="p-2">2026-08-08<br/>(6)</td>
-                <td className="p-2">{p.targetQuota}</td>
+                <td className="p-2">{p.reqCompletes}</td>
                 <td className="p-2 font-semibold text-orange-500">1</td>
                 <td className="p-2">{p.completedCount}</td>
                 <td className="p-2">0%</td>
                 <td className="p-2">0</td>
                 <td className="p-2">{p.ir}%</td>
                 <td className="p-2">{p.loi}</td>
-                <td className="p-2 text-blue-500 font-medium cursor-pointer inline-flex items-center hover:text-blue-600" onClick={() => navigate(`/projects/${p._id}`)}>{p.status} <Edit size={14} className="ml-1"/></td>
+                <td className="p-2">
+                  <span className={`px-2 py-1 rounded text-[11px] font-bold ${p.status === 'Running' || p.status === 'Select Status' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
+                    {p.status === 'Select Status' ? 'Running' : (p.status || 'Running')}
+                  </span>
+                </td>
+                <td className="p-2">
+                  <button 
+                    onClick={() => navigate(`/projects/${p._id}`)}
+                    className="flex items-center text-blue-500 hover:text-blue-700 px-2 py-1 rounded text-xs transition-colors"
+                  >
+                    <Edit size={14} className="mr-1"/> Edit
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
