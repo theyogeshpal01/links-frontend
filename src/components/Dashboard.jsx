@@ -43,11 +43,11 @@ const pmCompletesData = [
 
 function TimeFilters() {
   return (
-    <div className="flex space-x-2 mb-4">
-      <button className="px-3 py-1 text-xs font-semibold bg-gray-500 text-white rounded">1 Day</button>
-      <button className="px-3 py-1 text-xs font-semibold bg-gray-500 text-white rounded">1 Week</button>
-      <button className="px-3 py-1 text-xs font-semibold bg-gray-500 text-white rounded">1 Month</button>
-      <button className="px-3 py-1 text-xs font-semibold bg-gray-500 text-white rounded">3 Months</button>
+    <div className="flex space-x-2 mb-6">
+      <button className="px-4 py-1.5 text-xs font-bold bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors">1 Day</button>
+      <button className="px-4 py-1.5 text-xs font-bold text-gray-500 rounded-lg hover:bg-gray-50 transition-colors">1 Week</button>
+      <button className="px-4 py-1.5 text-xs font-bold text-gray-500 rounded-lg hover:bg-gray-50 transition-colors">1 Month</button>
+      <button className="px-4 py-1.5 text-xs font-bold text-gray-500 rounded-lg hover:bg-gray-50 transition-colors">3 Months</button>
     </div>
   );
 }
@@ -55,74 +55,76 @@ function TimeFilters() {
 function StatRow({ icon, value, label, colorText, colorIcon, bgFull }) {
   if (bgFull) {
     return (
-      <div className={`flex flex-col items-center justify-center py-4 ${bgFull} text-white`}>
-        <div className="flex items-center space-x-2">
-          <div className="bg-white rounded-full p-1 text-red-700">{icon}</div>
-          <span className="text-xl font-bold">{value}</span>
+      <div className={`flex flex-col items-center justify-center py-5 ${bgFull} text-white`}>
+        <div className="flex items-center space-x-3">
+          <div className="bg-white/20 rounded-full p-2">{icon}</div>
+          <span className="text-2xl font-extrabold">{value}</span>
         </div>
-        <span className="text-xs mt-1 uppercase tracking-wider opacity-90">{label}</span>
+        <span className="text-xs mt-2 uppercase tracking-widest font-semibold opacity-90">{label}</span>
       </div>
     );
   }
   return (
-    <div className="flex flex-col items-center justify-center py-4 border-b last:border-0 bg-white">
-      <div className="flex items-center space-x-2">
-        <div className={`p-1 ${colorIcon}`}>{icon}</div>
-        <span className="text-xl font-bold text-gray-800">{value}</span>
+    <div className="flex flex-col items-center justify-center py-5 border-b border-gray-100 last:border-0 bg-white hover:bg-gray-50 transition-colors">
+      <div className="flex items-center space-x-3">
+        <div className={`p-2 rounded-full bg-gray-50 ${colorIcon}`}>{icon}</div>
+        <span className="text-2xl font-extrabold text-gray-800">{value}</span>
       </div>
-      <span className="text-xs mt-1 text-gray-500 uppercase tracking-wider">{label}</span>
+      <span className="text-xs mt-2 text-gray-500 uppercase tracking-widest font-semibold">{label}</span>
     </div>
   );
 }
 
 function ProgressBar({ label, percentage, ratio, colorClass }) {
   return (
-    <div className="flex flex-col">
-      <div className="flex items-baseline space-x-2 mb-2">
+    <div className="flex flex-col p-4 bg-gray-50 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+      <div className="flex justify-between items-baseline mb-3">
         <span className="font-semibold text-gray-700">{label}</span>
-        <span className={`font-bold ${colorClass}`}>{percentage}</span>
+        <span className={`font-bold text-lg ${colorClass}`}>{percentage}</span>
       </div>
-      <div className="w-full bg-gray-200 h-2 rounded-full mb-1">
-        <div className={`h-2 rounded-full bg-current ${colorClass}`} style={{ width: percentage }}></div>
+      <div className="w-full bg-gray-200 h-2.5 rounded-full mb-2">
+        <div className={`h-2.5 rounded-full bg-current ${colorClass} transition-all duration-500`} style={{ width: percentage }}></div>
       </div>
-      <span className="text-xs text-gray-500 font-medium">{ratio}</span>
+      <span className="text-xs text-gray-500 font-medium tracking-wide">{ratio}</span>
     </div>
   );
 }
 
 function Dashboard() {
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-10">
+    <div className="space-y-8 max-w-7xl mx-auto pb-10">
       
       {/* Top Section */}
       <div>
-        <h2 className="text-lg font-bold text-gray-700 mb-4">Today's Project Statistics</h2>
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center"><CloudLightning className="mr-2 text-blue-500" /> Today's Project Statistics</h2>
         
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-6">
           {/* Vertical Stats Card */}
-          <div className="w-full md:w-64 flex flex-col bg-white rounded-lg shadow overflow-hidden">
-            <StatRow icon={<Cloud size={20} />} value="246" label="Completed" colorIcon="text-green-500" />
-            <StatRow icon={<Cloud size={20} />} value="844" label="Disqualified" colorIcon="text-yellow-500" />
-            <StatRow icon={<Cloud size={20} />} value="138" label="Quotafull" colorIcon="text-purple-500" />
-            <StatRow icon={<CloudOff size={20} />} value="627" label="Security Term" colorIcon="text-red-500" />
-            <StatRow icon={<Ban size={20} />} value="132" label="Blocked" bgFull="bg-red-700" />
+          <div className="w-full lg:w-72 flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+            <StatRow icon={<Cloud size={24} />} value="246" label="Completed" colorIcon="text-green-500" />
+            <StatRow icon={<Cloud size={24} />} value="844" label="Disqualified" colorIcon="text-yellow-500" />
+            <StatRow icon={<Cloud size={24} />} value="138" label="Quotafull" colorIcon="text-purple-500" />
+            <StatRow icon={<CloudOff size={24} />} value="627" label="Security Term" colorIcon="text-red-500" />
+            <StatRow icon={<Ban size={24} />} value="132" label="Blocked" bgFull="bg-gradient-to-r from-red-600 to-red-700" />
           </div>
 
-          {/* Map / Main visual area placeholder (Since screenshot shows map full width, we'll stack it) */}
-          <div className="flex-1 flex flex-col justify-end gap-6">
-             <div className="bg-white p-4 rounded-lg shadow-sm flex flex-wrap justify-around text-center divide-x divide-gray-200">
-              <div className="px-4 w-1/2 sm:w-auto mb-2 sm:mb-0"><p className="text-green-500 font-bold text-lg">1151</p><p className="text-xs text-gray-500 font-semibold">Running</p></div>
-              <div className="px-4 w-1/2 sm:w-auto mb-2 sm:mb-0"><p className="text-orange-500 font-bold text-lg">7</p><p className="text-xs text-gray-500 font-semibold">On Hold</p></div>
-              <div className="px-4 w-1/3 sm:w-auto"><p className="text-yellow-600 font-bold text-lg">13</p><p className="text-xs text-gray-500 font-semibold">Awaiting Ids</p></div>
-              <div className="px-4 w-1/3 sm:w-auto"><p className="text-green-600 font-bold text-lg">38</p><p className="text-xs text-gray-500 font-semibold">Completed</p></div>
-              <div className="px-4 w-1/3 sm:w-auto"><p className="text-red-600 font-bold text-lg">325</p><p className="text-xs text-gray-500 font-semibold">Closed</p></div>
+          {/* Right side stats */}
+          <div className="flex-1 flex flex-col gap-6">
+             {/* Status Banner */}
+             <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-wrap justify-around text-center divide-x divide-gray-100">
+              <div className="px-6 w-1/2 sm:w-auto mb-4 sm:mb-0"><p className="text-blue-500 font-black text-3xl mb-1">1151</p><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">Running</p></div>
+              <div className="px-6 w-1/2 sm:w-auto mb-4 sm:mb-0"><p className="text-orange-400 font-black text-3xl mb-1">7</p><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">On Hold</p></div>
+              <div className="px-6 w-1/3 sm:w-auto"><p className="text-yellow-500 font-black text-3xl mb-1">13</p><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">Awaiting Ids</p></div>
+              <div className="px-6 w-1/3 sm:w-auto"><p className="text-green-500 font-black text-3xl mb-1">38</p><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">Completed</p></div>
+              <div className="px-6 w-1/3 sm:w-auto"><p className="text-red-500 font-black text-3xl mb-1">325</p><p className="text-xs text-gray-500 font-bold uppercase tracking-wide">Closed</p></div>
             </div>
 
-            <div className="bg-white rounded-lg shadow p-6">
-               <h2 className="text-lg font-bold text-gray-700 mb-6">Monthly Statistics</h2>
-               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Monthly Progress */}
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex-1 flex flex-col">
+               <h2 className="text-lg font-bold text-gray-800 mb-6 flex items-center"><ShieldAlert size={18} className="mr-2 text-indigo-500" /> Monthly Statistics</h2>
+               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-auto">
                  <ProgressBar label="Completed" percentage="3.83%" ratio="2570/67031" colorClass="text-green-500" />
-                 <ProgressBar label="DisQualified" percentage="28.94%" ratio="20120/67031" colorClass="text-yellow-500" />
+                 <ProgressBar label="Disqualified" percentage="28.94%" ratio="20120/67031" colorClass="text-yellow-500" />
                  <ProgressBar label="Quotafull" percentage="6.2%" ratio="4170/67031" colorClass="text-blue-500" />
                  <ProgressBar label="Security Term" percentage="21.04%" ratio="14100/67031" colorClass="text-red-500" />
                </div>
@@ -133,10 +135,10 @@ function Dashboard() {
 
       {/* Country Charts */}
       <div>
-        <h2 className="text-lg font-bold text-gray-700 mb-4">Country Charts</h2>
-        <div className="bg-white rounded-lg shadow p-6 h-96 flex flex-col relative">
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">Country Charts</h2>
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 h-96 flex flex-col relative">
           <TimeFilters />
-          <div className="flex-1 flex items-center justify-center border-2 border-dashed border-gray-200 rounded bg-gray-50">
+          <div className="flex-1 flex items-center justify-center border-2 border-dashed border-gray-200 rounded-xl bg-gray-50/50">
             <p className="text-gray-400 font-medium">[ Interactive World Map Placeholder ]</p>
           </div>
         </div>
@@ -144,40 +146,40 @@ function Dashboard() {
 
       {/* Client Charts */}
       <div>
-        <h2 className="text-lg font-bold text-gray-700 mb-4">Client Charts</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top 5 Clients By Completes</h3>
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">Client Charts</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top 5 Clients By Completes</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={clientCompletesData}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="name" tick={{fontSize: 10}} />
-                  <YAxis tick={{fontSize: 10}} />
-                  <RechartsTooltip />
-                  <Bar dataKey="value" fill="#84cc16" barSize={40} />
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
+                  <XAxis dataKey="name" tick={{fontSize: 11, fill: '#6B7280'}} axisLine={false} tickLine={false} />
+                  <YAxis tick={{fontSize: 11, fill: '#6B7280'}} axisLine={false} tickLine={false} />
+                  <RechartsTooltip cursor={{fill: '#F3F4F6'}} contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Bar dataKey="value" fill="#3B82F6" radius={[4, 4, 0, 0]} barSize={32} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top 5 Clients Traffic Analysis</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top 5 Clients Traffic Analysis</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trafficData} layout="vertical" stackOffset="expand">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                  <XAxis type="number" tick={{fontSize: 10}} />
-                  <YAxis dataKey="name" type="category" tick={{fontSize: 10}} width={100} />
-                  <RechartsTooltip />
-                  <Legend iconType="square" wrapperStyle={{ fontSize: '10px' }} />
-                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} />
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" />
+                  <XAxis type="number" tick={{fontSize: 11, fill: '#6B7280'}} axisLine={false} tickLine={false} />
+                  <YAxis dataKey="name" type="category" tick={{fontSize: 11, fill: '#6B7280'}} width={110} axisLine={false} tickLine={false} />
+                  <RechartsTooltip cursor={{fill: '#F3F4F6'}} contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} radius={[4, 0, 0, 4]} />
                   <Bar dataKey="Completed" stackId="a" fill={TRAFFIC_COLORS.Completed} />
                   <Bar dataKey="Rejected" stackId="a" fill={TRAFFIC_COLORS.Rejected} />
-                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} />
+                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -187,42 +189,42 @@ function Dashboard() {
 
       {/* Supplier Charts */}
       <div>
-        <h2 className="text-lg font-bold text-gray-700 mb-4">Supplier Charts</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top 5 Suppliers By Completes</h3>
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">Supplier Charts</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top 5 Suppliers By Completes</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64 flex">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={supplierCompletesData} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={({percent}) => `${(percent * 100).toFixed(0)}%`}>
+                  <Pie data={supplierCompletesData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} fill="#8884d8" dataKey="value" stroke="none">
                     {supplierCompletesData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <RechartsTooltip />
-                  <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ fontSize: '10px' }}/>
+                  <RechartsTooltip contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Legend layout="vertical" verticalAlign="middle" align="right" iconType="circle" wrapperStyle={{ fontSize: '11px' }}/>
                 </PieChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top 5 Supplier Traffic Analysis</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top 5 Supplier Traffic Analysis</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trafficData} layout="vertical" stackOffset="expand">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                  <XAxis type="number" tick={{fontSize: 10}} />
-                  <YAxis dataKey="name" type="category" tick={{fontSize: 10}} width={100} />
-                  <RechartsTooltip />
-                  <Legend iconType="square" wrapperStyle={{ fontSize: '10px' }} />
-                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} />
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" />
+                  <XAxis type="number" tick={{fontSize: 11, fill: '#6B7280'}} axisLine={false} tickLine={false} />
+                  <YAxis dataKey="name" type="category" tick={{fontSize: 11, fill: '#6B7280'}} width={110} axisLine={false} tickLine={false} />
+                  <RechartsTooltip cursor={{fill: '#F3F4F6'}} contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} radius={[4, 0, 0, 4]} />
                   <Bar dataKey="Completed" stackId="a" fill={TRAFFIC_COLORS.Completed} />
                   <Bar dataKey="Rejected" stackId="a" fill={TRAFFIC_COLORS.Rejected} />
-                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} />
+                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -232,42 +234,42 @@ function Dashboard() {
 
       {/* PM Charts */}
       <div>
-        <h2 className="text-lg font-bold text-gray-700 mb-4">PM Charts</h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top PM By Completes</h3>
+        <h2 className="text-xl font-bold text-gray-800 mb-6 flex items-center">PM Charts</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top PM By Completes</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64 flex">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie data={pmCompletesData} cx="50%" cy="50%" outerRadius={80} fill="#8884d8" dataKey="value" label={({percent}) => `${(percent * 100).toFixed(0)}%`}>
+                  <Pie data={pmCompletesData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} fill="#8884d8" dataKey="value" stroke="none">
                     {pmCompletesData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
-                  <RechartsTooltip />
-                  <Legend layout="vertical" verticalAlign="middle" align="right" wrapperStyle={{ fontSize: '10px' }}/>
+                  <RechartsTooltip contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Legend layout="vertical" verticalAlign="middle" align="right" iconType="circle" wrapperStyle={{ fontSize: '11px' }}/>
                 </PieChart>
               </ResponsiveContainer>
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-sm font-bold text-gray-600 mb-4">Top 5 PM Traffic Analysis</h3>
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 transition-shadow hover:shadow-md">
+            <h3 className="text-base font-bold text-gray-700 mb-4">Top 5 PM Traffic Analysis</h3>
             <TimeFilters />
-            <p className="text-xs text-gray-500 mb-2">Today Data</p>
+            <p className="text-xs text-gray-400 font-medium mb-4 tracking-wide uppercase">Today Data</p>
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={trafficData} layout="vertical" stackOffset="expand">
-                  <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                  <XAxis type="number" tick={{fontSize: 10}} />
-                  <YAxis dataKey="name" type="category" tick={{fontSize: 10}} width={100} />
-                  <RechartsTooltip />
-                  <Legend iconType="square" wrapperStyle={{ fontSize: '10px' }} />
-                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} />
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#E5E7EB" />
+                  <XAxis type="number" tick={{fontSize: 11, fill: '#6B7280'}} axisLine={false} tickLine={false} />
+                  <YAxis dataKey="name" type="category" tick={{fontSize: 11, fill: '#6B7280'}} width={110} axisLine={false} tickLine={false} />
+                  <RechartsTooltip cursor={{fill: '#F3F4F6'}} contentStyle={{borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'}} />
+                  <Legend iconType="circle" wrapperStyle={{ fontSize: '11px', paddingTop: '10px' }} />
+                  <Bar dataKey="Redirected" stackId="a" fill={TRAFFIC_COLORS.Redirected} radius={[4, 0, 0, 4]} />
                   <Bar dataKey="Completed" stackId="a" fill={TRAFFIC_COLORS.Completed} />
                   <Bar dataKey="Rejected" stackId="a" fill={TRAFFIC_COLORS.Rejected} />
-                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} />
+                  <Bar dataKey="Quotafull" stackId="a" fill={TRAFFIC_COLORS.Quotafull} radius={[0, 4, 4, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
