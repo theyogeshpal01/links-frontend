@@ -3,16 +3,49 @@ import { Edit, Trash2, Plus, X } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 import api from '../api';
 
+const PROFILE_QUESTIONS = [
+  {
+    id: "q1",
+    question: "Please describe your role in manufacturing and industrial. I work in:",
+    fieldType: "Dropdown",
+    options: [
+      "Furniture and fixture manufacturing",
+      "Textiles and linens",
+      "Building materials",
+      "Food and Beverage production",
+      "Consumer Electronics",
+      "Cleaning and maintenance products",
+      "Safety and security equipment",
+      "Transportation equipment",
+      "Technology and software development"
+    ]
+  },
+  {
+    id: "q2",
+    question: "What is your Age?",
+    fieldType: "Range",
+    options: []
+  },
+  {
+    id: "q3",
+    question: "What is your Gender?",
+    fieldType: "Radio",
+    options: ["Male", "Female", "Other"]
+  }
+];
+
 function ProjectQualification() {
   const { id } = useParams();
   const [qualifications, setQualifications] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   
   const [formData, setFormData] = useState({
-    questionType: 'Age',
+    profileQuestionId: '',
+    questionFieldType: '',
     rangeStart: '',
     rangeEnd: '',
-    options: [],
+    selectedAnswers: [],
+    questionType: 'Custom',
     customQuestionName: ''
   });
   
@@ -213,68 +246,113 @@ function ProjectQualification() {
 
         </div>
 
-        {/* Add Qualification Modal */}
+                {/* Add Qualification Modal */}
         {showAddModal && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div className="bg-white rounded-lg p-6 w-full max-w-lg shadow-xl">
-                    <div className="flex justify-between items-center mb-4">
-                        <h3 className="text-xl font-bold">Add Qualification</h3>
+                <div className="bg-white rounded-lg p-6 w-full max-w-4xl shadow-xl flex flex-col max-h-[90vh]">
+                    <div className="flex justify-between items-center mb-6">
+                        <h3 className="text-2xl font-bold">Add Project Qualification</h3>
                         <X className="cursor-pointer text-gray-500 hover:text-black" onClick={() => setShowAddModal(false)} />
                     </div>
                     
-                    <div className="space-y-4">
-                        <div>
-                            <label className="block text-sm font-medium mb-1">Qualification Type</label>
-                            <select className="w-full border p-2 rounded" value={formData.questionType} onChange={e => setFormData({...formData, questionType: e.target.value, options: [], rangeStart: '', rangeEnd: ''})}>
-                                <option value="Age">Age Range</option>
-                                <option value="Gender">Gender</option>
-                                <option value="Custom">Custom Question</option>
-                            </select>
+                    <div className="flex-1 overflow-y-auto space-y-6">
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm text-gray-500 mb-1">Profile Question</label>
+                                <select className="w-full border p-2 rounded text-sm text-gray-700" value={formData.profileQuestionId} onChange={e => {
+                                    const selected = PROFILE_QUESTIONS.find(q => q.id === e.target.value);
+                                    if(selected) {
+                                        setFormData({...formData, profileQuestionId: selected.id, questionFieldType: selected.fieldType, selectedAnswers: [], rangeStart: '', rangeEnd: ''});
+                                    } else {
+                                        setFormData({...formData, profileQuestionId: '', questionFieldType: '', selectedAnswers: [], rangeStart: '', rangeEnd: ''});
+                                    }
+                                }}>
+                                    <option value="">Please Select</option>
+                                    {PROFILE_QUESTIONS.map(q => (
+                                        <option key={q.id} value={q.id}>{q.question}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                <label className="block text-sm text-gray-500 mb-1">Question Field Type</label>
+                                <select className="w-full border p-2 rounded text-sm text-gray-700 bg-gray-50" value={formData.questionFieldType} disabled>
+                                    <option value="">Select</option>
+                                    <option value="Dropdown">Dropdown</option>
+                                    <option value="Range">Range</option>
+                                    <option value="Radio">Radio</option>
+                                </select>
+                            </div>
                         </div>
 
-                        {formData.questionType === 'Custom' && (
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Custom Question Text</label>
-                                <input type="text" placeholder="e.g. Which region do you live in?" className="w-full border p-2 rounded" value={formData.customQuestionName} onChange={e => setFormData({...formData, customQuestionName: e.target.value})} />
-                            </div>
-                        )}
-
-                        {formData.questionType === 'Age' && (
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Min Age</label>
-                                    <input type="number" className="w-full border p-2 rounded" value={formData.rangeStart} onChange={e => setFormData({...formData, rangeStart: e.target.value})} />
-                                </div>
-                                <div>
-                                    <label className="block text-sm font-medium mb-1">Max Age</label>
-                                    <input type="number" className="w-full border p-2 rounded" value={formData.rangeEnd} onChange={e => setFormData({...formData, rangeEnd: e.target.value})} />
-                                </div>
-                            </div>
-                        )}
-
-                        {(formData.questionType === 'Gender' || formData.questionType === 'Custom') && (
-                            <div>
-                                <label className="block text-sm font-medium mb-1">Allowed Options</label>
-                                <div className="flex space-x-2 mb-2">
-                                    <input type="text" placeholder="e.g. Male" className="flex-1 border p-2 rounded" value={tempOption} onChange={e => setTempOption(e.target.value)} onKeyDown={e => e.key === 'Enter' && addOption()} />
-                                    <button onClick={addOption} className="bg-gray-200 px-4 rounded hover:bg-gray-300 font-bold">+</button>
-                                </div>
-                                <div className="flex flex-wrap gap-2">
-                                    {formData.options.map((opt, idx) => (
-                                        <div key={idx} className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs font-bold flex items-center">
-                                            {opt}
-                                            <button onClick={() => removeOption(idx)} className="ml-2 text-blue-500 hover:text-blue-900">×</button>
+                        {formData.profileQuestionId && (
+                            <div className="border rounded mt-4">
+                                <div className="bg-gray-50 p-2 font-bold text-sm border-b">Answer</div>
+                                <div className="p-0">
+                                    {PROFILE_QUESTIONS.find(q => q.id === formData.profileQuestionId)?.fieldType === 'Range' ? (
+                                        <div className="p-4 grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-xs font-bold mb-1">Min Value</label>
+                                                <input type="number" className="w-full border p-2 rounded" value={formData.rangeStart} onChange={e => setFormData({...formData, rangeStart: e.target.value})} />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-bold mb-1">Max Value</label>
+                                                <input type="number" className="w-full border p-2 rounded" value={formData.rangeEnd} onChange={e => setFormData({...formData, rangeEnd: e.target.value})} />
+                                            </div>
                                         </div>
-                                    ))}
-                                    {formData.options.length === 0 && <span className="text-xs text-gray-400">No options added yet.</span>}
+                                    ) : (
+                                        <ul className="text-sm">
+                                            {PROFILE_QUESTIONS.find(q => q.id === formData.profileQuestionId)?.options.map((opt, i) => (
+                                                <li key={i} className="border-b last:border-b-0 p-3 flex items-center hover:bg-gray-50">
+                                                    <input type="checkbox" className="mr-3" checked={formData.selectedAnswers.includes(opt)} onChange={e => {
+                                                        const checked = e.target.checked;
+                                                        setFormData(prev => ({
+                                                            ...prev,
+                                                            selectedAnswers: checked ? [...prev.selectedAnswers, opt] : prev.selectedAnswers.filter(a => a !== opt)
+                                                        }));
+                                                    }} />
+                                                    {opt}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                             </div>
                         )}
                     </div>
 
-                    <div className="mt-6 flex justify-end space-x-2">
-                        <button className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded" onClick={() => setShowAddModal(false)}>Cancel</button>
-                        <button className="bg-gray-900 text-white px-4 py-2 rounded font-bold hover:bg-gray-800 shadow" onClick={handleSave}>Save Rule</button>
+                    <div className="mt-6 flex space-x-2">
+                        <button className="bg-[#4eb3f7] text-white px-4 py-1.5 rounded font-bold shadow hover:bg-blue-400 flex items-center text-sm" onClick={async () => {
+                            try {
+                                const selectedQ = PROFILE_QUESTIONS.find(q => q.id === formData.profileQuestionId);
+                                if (!selectedQ) return alert('Select a profile question');
+                                
+                                const payload = {
+                                    questionType: 'Custom',
+                                    customQuestionName: selectedQ.question,
+                                    options: formData.selectedAnswers,
+                                    rangeStart: formData.rangeStart,
+                                    rangeEnd: formData.rangeEnd
+                                };
+
+                                if (selectedQ.fieldType === 'Range' && (!payload.rangeStart || !payload.rangeEnd)) {
+                                    return alert('Please enter start and end values.');
+                                }
+                                if (selectedQ.fieldType !== 'Range' && payload.options.length === 0) {
+                                    return alert('Please select at least one answer option.');
+                                }
+                                
+                                await api.post(/admin/projects/ + id + /qualifications, payload);
+                                setShowAddModal(false);
+                                setFormData({ profileQuestionId: '', questionFieldType: '', selectedAnswers: [], rangeStart: '', rangeEnd: '', questionType: 'Custom', customQuestionName: '' });
+                                fetchQualifications();
+                            } catch (e) {
+                                console.error(e);
+                                alert('Failed to save qualification.');
+                            }
+                        }}>
+                            Save
+                        </button>
+                        <button className="px-4 py-1.5 text-red-500 border border-red-200 rounded font-bold hover:bg-red-50 text-sm" onClick={() => setShowAddModal(false)}>Cancel</button>
                     </div>
                 </div>
             </div>
@@ -284,3 +362,4 @@ function ProjectQualification() {
 }
 
 export default ProjectQualification;
+

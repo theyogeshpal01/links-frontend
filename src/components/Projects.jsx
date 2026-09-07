@@ -79,15 +79,15 @@ function Projects() {
               <tr><td colSpan="15" className="p-4 text-center text-gray-500">No data available in table</td></tr>
             ) : projects.map(p => (
               <tr key={p._id} className="border-b hover:bg-gray-50">
-                <td className="p-2">1308</td>
-                <td className="p-2 text-center">0</td>
+                <td className="p-2" title={p._id}>{p._id.substring(p._id.length - 4)}</td>
+                <td className="p-2 text-center">{p.parentProjectId ? p.parentProjectId.substring(p.parentProjectId.length - 4) : '0'}</td>
                 <td className="p-2 text-blue-600 cursor-pointer" onClick={() => navigate(`/projects/${p._id}`)}>{p.name}<br/><span className="text-gray-500 text-[10px]">{(p.country && p.country.length > 0) ? p.country.join(', ') : 'United States'}</span></td>
                 <td className="p-2">{p.clientId?.name || 'N/A'}</td>
-                <td className="p-2">Admin /<br/>Sales TTP</td>
-                <td className="p-2">2026-08-08<br/>(6)</td>
+                <td className="p-2">{p.projectManager || 'Admin'} /<br/>{p.salesPerson || 'Sales'}</td>
+                <td className="p-2">{p.startDate ? p.startDate.split('T')[0] : 'N/A'}</td>
                 <td className="p-2">{p.reqCompletes}</td>
-                <td className="p-2 font-semibold text-orange-500">1</td>
-                <td className="p-2">{p.completedCount}</td>
+                <td className="p-2 font-semibold text-orange-500">{p.completedCount || 0}</td>
+                <td className="p-2">{p.completedCount || 0}</td>
                 <td className="p-2">0%</td>
                 <td className="p-2">0</td>
                 <td className="p-2">{p.ir}%</td>

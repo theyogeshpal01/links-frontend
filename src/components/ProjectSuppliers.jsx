@@ -72,13 +72,38 @@ function ProjectSuppliers() {
 
   return (
     <div className="bg-white p-6 relative">
-      {/* Header */}
+            {/* Header controls */}
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Manage Suppliers</h2>
+        <div></div>
         <div className="flex space-x-2">
-          <button className="bg-gray-900 hover:bg-gray-800 text-white px-3 py-1.5 rounded text-sm font-bold flex items-center shadow-sm" onClick={() => setShowAddModal(true)}>
-            <Plus size={16} className="mr-1" /> Add Supplier
+                    <button className="bg-[#4eb3f7] hover:bg-blue-400 text-white px-3 py-1.5 rounded text-sm font-bold flex items-center shadow-sm" onClick={() => {
+            if(suppliers.length === 0) return alert('No suppliers to download.');
+            let csv = "data:text/csv;charset=utf-8,Supplier,EntryLink\n";
+            suppliers.forEach(s => {
+               csv += ${s.companyId?.name || 'Unknown'},\n;
+            });
+            const encodedUri = encodeURI(csv);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "supplier_links.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }}>
+            <Download size={14} className="mr-1" /> Supplier Links
           </button>
+          <button className="bg-gray-900 hover:bg-gray-800 text-white px-3 py-1.5 rounded text-sm font-bold flex items-center shadow-sm" onClick={() => setShowAddModal(true)}>
+            <Plus size={14} className="mr-1" /> Add Supplier
+          </button>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center mb-4 text-sm text-gray-600">
+        <div>
+          <select className="border p-1 rounded mr-1"><option>25</option></select> entries per page
+        </div>
+        <div>
+          Search: <input type="text" className="border p-1 rounded ml-1" />
         </div>
       </div>
 
@@ -87,43 +112,53 @@ function ProjectSuppliers() {
         <table className="w-full text-left border-collapse text-xs">
           <thead>
             <tr className="border-b border-t text-gray-700 bg-gray-50">
-              <th className="p-3 font-bold">Panel</th>
-              <th className="p-3 font-bold">Hits</th>
-              <th className="p-3 font-bold">Completed</th>
-              <th className="p-3 font-bold">Dis<br/>Qualified</th>
-              <th className="p-3 font-bold">Quota<br/>Full</th>
-              <th className="p-3 font-bold">Security<br/>Term</th>
-              <th className="p-3 font-bold">CPC</th>
-              <th className="p-3 font-bold">Status</th>
-              <th className="p-3 font-bold text-center">Test<br/>Links</th>
+              <th className="p-3 font-bold whitespace-nowrap">ID <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Panel <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Hits <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Completed <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Dis Qualified <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Quota Full <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Security Term <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">IR <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">CPC <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Last Completed <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap">Status <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap text-center">Action <span>&#9830;</span></th>
+              <th className="p-3 font-bold whitespace-nowrap text-center">Test Links <span>&#9830;</span></th>
             </tr>
           </thead>
           <tbody>
             {suppliers.map(s => (
               <tr key={s._id} className="border-b hover:bg-gray-50">
+                <td className="p-3 whitespace-nowrap">{s._id.substring(s._id.length - 5)}</td>
                 <td className="p-3 whitespace-nowrap">{s.companyId?.name || 'Unknown'}</td>
-                <td className="p-3 text-blue-500">{s.hits}</td>
-                <td className="p-3 text-blue-500">{s.completed}</td>
-                <td className="p-3 text-blue-500">{s.disqualified}</td>
-                <td className="p-3 text-blue-500">{s.quotaFull}</td>
-                <td className="p-3 text-blue-500">{s.securityTerminate}</td>
-                <td className="p-3">{s.cpc}</td>
-                <td className="p-3 text-blue-500">{s.status}</td>
-                <td className="p-3 text-center">
-                  <div className="bg-blue-500 text-white p-1.5 rounded inline-block cursor-pointer hover:bg-blue-600 mr-2" onClick={() => { setSelectedSupplierId(s); setShowLinksModal(true); }}>
-                    <LinkIcon size={12} />
-                  </div>
-                  <div className="bg-red-500 text-white p-1.5 rounded inline-block cursor-pointer hover:bg-red-600" onClick={() => copyToClipboard(getEntryLink(s))}>
-                    <Copy size={12} />
-                  </div>
+                <td className="p-3 text-blue-500 whitespace-nowrap">{s.hits || 0}/99999</td>
+                <td className="p-3 text-blue-500 whitespace-nowrap">{s.completed || 0}/500</td>
+                <td className="p-3 text-blue-500 whitespace-nowrap text-center">{s.disqualified || 0}</td>
+                <td className="p-3 text-blue-500 whitespace-nowrap text-center">{s.quotaFull || 0}</td>
+                <td className="p-3 text-blue-500 whitespace-nowrap text-center">{s.securityTerminate || 0}</td>
+                <td className="p-3 text-red-500 whitespace-nowrap text-center">0%</td>
+                <td className="p-3 whitespace-nowrap">{s.cpc}</td>
+                <td className="p-3 whitespace-nowrap">-</td>
+                <td className="p-3 text-blue-500 whitespace-nowrap">{s.status || 'Running'}</td>
+                <td className="p-3 text-center whitespace-nowrap">
+                  <span className="text-gray-500 cursor-pointer mr-2 inline-block hover:text-gray-800"><Edit size={14} /></span>
+                  <span className="text-blue-500 cursor-pointer inline-block hover:text-blue-700" onClick={() => { setSelectedSupplierId(s); setShowLinksModal(true); }}><LinkIcon size={14} /></span>
+                </td>
+                <td className="p-3 text-center whitespace-nowrap">
+                  <span className="text-red-500 cursor-pointer inline-block hover:text-red-700" onClick={() => copyToClipboard(getEntryLink(s))}><Copy size={14} /></span>
                 </td>
               </tr>
             ))}
             {suppliers.length === 0 && (
-              <tr><td colSpan="9" className="p-4 text-center text-gray-500">No suppliers assigned yet.</td></tr>
+              <tr><td colSpan="13" className="p-4 text-center text-gray-500">No suppliers assigned yet.</td></tr>
             )}
           </tbody>
         </table>
+      </div>
+
+      <div className="mt-4 text-xs text-gray-600 font-medium">
+        Showing {suppliers.length > 0 ? 1 : 0} to {suppliers.length} of {suppliers.length} entries
       </div>
 
       {/* Add Supplier Modal */}
@@ -196,3 +231,5 @@ function ProjectSuppliers() {
 }
 
 export default ProjectSuppliers;
+
+

@@ -18,7 +18,8 @@ function EditProjectForm() {
   // Form Data State
   const [formData, setFormData] = useState({
     name: '', parentProjectId: '', studyTypeId: '', country: '', language: '',
-    surveyLink: '', surveyTestLink: '', cpc: '0.00', invoiceCurrency: 'US Dollar', conversionRate: '1.00',
+    surveyLink: '', surveyTestLink: '', cpc: '0.00', vendorMaxCpc: '0.00', invoiceCurrency: 'US Dollar', conversionRate: '1.00',
+    surveyFriendlyName: '', pv: '0.00', setupCost: '0.00',
     reqCompletes: '', maxCompletes: '', loi: '0:10', ir: '', pointsToAward: '0',
     supportedDevices: { desktop: true, mobile: true, tablet: true },
     clientId: '', clientContactId: '', projectManager: '', salesPerson: '',
@@ -81,8 +82,9 @@ function EditProjectForm() {
         setFormData({
           name: p.name || '', parentProjectId: p.parentProjectId || '', studyTypeId: p.studyTypeId?._id || p.studyTypeId || '', 
           country: p.country || '', language: p.language || '', surveyLink: p.surveyLink || '', 
-          surveyTestLink: p.surveyTestLink || '', cpc: p.cpc || 0, invoiceCurrency: p.invoiceCurrency || 'US Dollar', 
-          conversionRate: p.conversionRate || 1, reqCompletes: p.reqCompletes || '', maxCompletes: p.maxCompletes || '', 
+          surveyTestLink: p.surveyTestLink || '', cpc: p.cpc || 0, vendorMaxCpc: p.vendorMaxCpc || 0, invoiceCurrency: p.invoiceCurrency || 'US Dollar', 
+          conversionRate: p.conversionRate || 1, surveyFriendlyName: p.surveyFriendlyName || '', pv: p.pv || 0, setupCost: p.setupCost || 0,
+          reqCompletes: p.reqCompletes || '', maxCompletes: p.maxCompletes || '', 
           loi: p.loi || '', ir: p.ir || '', pointsToAward: p.pointsToAward || 0, supportedDevices: sd, 
           clientId: p.clientId?._id || p.clientId || '', clientContactId: p.clientContactId?._id || p.clientContactId || '', projectManager: p.projectManager || '', 
           salesPerson: p.salesPerson || '', startDate: p.startDate ? p.startDate.split('T')[0] : '', 
@@ -186,16 +188,16 @@ function EditProjectForm() {
 
                   <div className="grid grid-cols-4 gap-4">
                     <div><label className="block text-gray-600 mb-1">CPC $</label><input type="number" step="0.01" name="cpc" value={formData.cpc} onChange={handleChange} className="w-full border p-2 rounded" /></div>
-                    <div><label className="block text-gray-600 mb-1">Vendor Max CPC $</label><input type="number" step="0.01" className="w-full border p-2 rounded bg-gray-50" readOnly value="1.40" /></div>
+                    <div><label className="block text-gray-600 mb-1">Vendor Max CPC $</label><input type="number" step="0.01" name="vendorMaxCpc" value={formData.vendorMaxCpc} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div><label className="block text-gray-600 mb-1">Invoice Currency</label><select name="invoiceCurrency" value={formData.invoiceCurrency} onChange={handleChange} className="w-full border p-2 rounded"><option>US Dollar</option></select></div>
                     <div><label className="block text-gray-600 mb-1">Conversion Rate</label><input type="number" step="0.01" name="conversionRate" value={formData.conversionRate} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                    <div><label className="block text-gray-600 mb-1">Survey Friendly Name</label><input type="text" className="w-full border p-2 rounded" /></div>
+                    <div><label className="block text-gray-600 mb-1">Survey Friendly Name</label><input type="text" name="surveyFriendlyName" value={formData.surveyFriendlyName} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div className="grid grid-cols-2 gap-2">
-                        <div><label className="block text-gray-600 mb-1">PV $</label><input type="text" className="w-full border p-2 rounded bg-gray-50" readOnly value="0.00" /></div>
-                        <div><label className="block text-gray-600 mb-1">Setup Cost $</label><input type="text" className="w-full border p-2 rounded bg-gray-50" readOnly value="0.00" /></div>
+                        <div><label className="block text-gray-600 mb-1">PV $</label><input type="number" step="0.01" name="pv" value={formData.pv} onChange={handleChange} className="w-full border p-2 rounded" /></div>
+                        <div><label className="block text-gray-600 mb-1">Setup Cost $</label><input type="number" step="0.01" name="setupCost" value={formData.setupCost} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     </div>
                   </div>
 
