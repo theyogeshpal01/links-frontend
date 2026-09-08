@@ -80,7 +80,7 @@ function ProjectSuppliers() {
             if(suppliers.length === 0) return alert('No suppliers to download.');
             let csv = "data:text/csv;charset=utf-8,Supplier,EntryLink\n";
             suppliers.forEach(s => {
-               csv += ${s.companyId?.name || 'Unknown'},\n;
+               csv += `${s.companyId?.name || 'Unknown'},${getEntryLink(s)}\n`;
             });
             const encodedUri = encodeURI(csv);
             const link = document.createElement("a");

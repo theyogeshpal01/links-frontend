@@ -23,14 +23,14 @@ function ProjectQuota() {
 
   const fetchQuotas = async () => {
     try {
-      const res = await api.get(/admin/projects/ + id + /quotas);
+      const res = await api.get(`/admin/projects/${id}/quotas`);
       setQuotas(res.data);
     } catch(e) { console.error(e); }
   };
 
   const fetchQualifications = async () => {
     try {
-      const res = await api.get(/admin/projects/ + id + /qualifications);
+      const res = await api.get(`/admin/projects/${id}/qualifications`);
       setQualifications(res.data);
     } catch(e) { console.error(e); }
   };
@@ -38,7 +38,7 @@ function ProjectQuota() {
   const handleSave = async () => {
     if (!formData.name || !formData.quota) return alert('Enter Quota Name and Quota value');
     try {
-      await api.post(/admin/projects/ + id + /quotas, formData);
+      await api.post(`/admin/projects/${id}/quotas`, formData);
       setFormData({ name: '', quota: '', qualificationId: '', questionFieldType: 'Range' });
       fetchQuotas();
     } catch(e) { console.error(e); alert('Failed to save quota'); }
@@ -47,7 +47,7 @@ function ProjectQuota() {
   const handleDelete = async (quotaId) => {
     if(!window.confirm('Delete quota?')) return;
     try {
-      await api.delete(/admin/quotas/ + quotaId);
+      await api.delete(`/admin/quotas/${quotaId}`);
       fetchQuotas();
     } catch(e) { console.error(e); }
   };
@@ -134,3 +134,4 @@ function ProjectQuota() {
 }
 
 export default ProjectQuota;
+

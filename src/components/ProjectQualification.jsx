@@ -341,7 +341,7 @@ function ProjectQualification() {
                                     return alert('Please select at least one answer option.');
                                 }
                                 
-                                await api.post(/admin/projects/ + id + /qualifications, payload);
+                                await api.post(`/admin/projects/${id}/qualifications`, payload);
                                 setShowAddModal(false);
                                 setFormData({ profileQuestionId: '', questionFieldType: '', selectedAnswers: [], rangeStart: '', rangeEnd: '', questionType: 'Custom', customQuestionName: '' });
                                 fetchQualifications();

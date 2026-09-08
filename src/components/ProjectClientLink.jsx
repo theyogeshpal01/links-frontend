@@ -15,7 +15,7 @@ function ProjectClientLink() {
 
   const fetchCodes = async () => {
     try {
-      const res = await api.get(/admin/projects/ + id + /client-codes);
+      const res = await api.get(`/admin/projects/${id}/client-codes`);
       setCodes(res.data);
     } catch(e) { console.error(e); }
   };
@@ -42,8 +42,8 @@ function ProjectClientLink() {
           return;
         }
 
-        await api.post(/admin/projects/ + id + /client-codes/import, { codes: rawCodes });
-        alert(Successfully imported  client codes.);
+        await api.post(`/admin/projects/${id}/client-codes/import`, { codes: rawCodes });
+        alert(`Successfully imported ${rawCodes.length} client codes.`);
         setFile(null);
         fetchCodes();
       } catch (err) {
@@ -143,3 +143,4 @@ function ProjectClientLink() {
 }
 
 export default ProjectClientLink;
+

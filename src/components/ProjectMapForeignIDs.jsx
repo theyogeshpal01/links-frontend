@@ -10,7 +10,7 @@ function ProjectMapForeignIDs() {
     // Generate mapped CSV
     let csvContent = "data:text/csv;charset=utf-8,Redirect_ID,Mapped_Foreign_ID\n";
     idArray.forEach(id => {
-      csvContent += ${id.trim()},FID_\n;
+      csvContent += `${id.trim()},FID_${Math.floor(Math.random() * 100000)}\n`;
     });
 
     const encodedUri = encodeURI(csvContent);
