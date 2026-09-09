@@ -51,7 +51,7 @@ function Navbar({ setAuth }) {
               </Link>
               
               {/* Projects Dropdown */}
-              <div className="relative group">
+              <div className="relative pb-4 -mb-4 group">
                 <button className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-blue-600 hover:bg-blue-50 focus:outline-none transition-colors">
                   Projects <ChevronDown size={14} className="ml-1.5 text-gray-400 group-hover:text-blue-500 transition-colors" />
                 </button>
@@ -64,7 +64,7 @@ function Navbar({ setAuth }) {
               </div>
 
               {/* Company Dropdown */}
-              <div className="relative group">
+              <div className="relative pb-4 -mb-4 group">
                 <button className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-blue-600 hover:bg-blue-50 focus:outline-none transition-colors">
                   Company <ChevronDown size={14} className="ml-1.5 text-gray-400 group-hover:text-blue-500 transition-colors" />
                 </button>
@@ -78,7 +78,7 @@ function Navbar({ setAuth }) {
               </div>
 
               {/* Analysis Dropdown */}
-              <div className="relative group">
+              <div className="relative pb-4 -mb-4 group">
                 <button className="flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-blue-600 hover:bg-blue-50 focus:outline-none transition-colors">
                   Analysis <ChevronDown size={14} className="ml-1.5 text-gray-400 group-hover:text-blue-500 transition-colors" />
                 </button>
@@ -165,3 +165,4 @@ function Navbar({ setAuth }) {
 }
 
 export default Navbar;
+
