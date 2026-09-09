@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { LogOut, Menu, X } from 'lucide-react';
+import { LogOut, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 
 function Navbar({ setAuth }) {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ function Navbar({ setAuth }) {
             {/* Projects Dropdown */}
             <div className="relative pb-4 -mb-4 group">
               <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
-                Projects <span className="ml-1 text-[10px]">?</span>
+                Projects <ChevronDown size={14} className="ml-1 text-gray-500" />
               </button>
               <div className="absolute left-0 z-50 hidden w-40 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
                 <Link to="/projects" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Projects</Link>
@@ -53,7 +53,7 @@ function Navbar({ setAuth }) {
             {/* Company Dropdown */}
             <div className="relative pb-4 -mb-4 group">
               <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
-                Company <span className="ml-1 text-[10px]">?</span>
+                Company <ChevronDown size={14} className="ml-1 text-gray-500" />
               </button>
               <div className="absolute left-0 z-50 hidden w-48 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
                 <Link to="/companies" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Company</Link>
@@ -65,7 +65,7 @@ function Navbar({ setAuth }) {
             {/* Analysis Dropdown */}
             <div className="relative pb-4 -mb-4 group">
               <button className="flex items-center h-full pt-1 hover:text-blue-600 focus:outline-none">
-                Analysis <span className="ml-1 text-[10px]">?</span>
+                Analysis <ChevronDown size={14} className="ml-1 text-gray-500" />
               </button>
               <div className="absolute left-0 z-50 hidden w-40 py-1 bg-white border rounded shadow-lg top-full group-hover:block">
                 <Link to="/analysis/reports" className="block px-4 py-2 text-blue-500 hover:bg-gray-100">Reports</Link>
@@ -90,7 +90,7 @@ function Navbar({ setAuth }) {
           <Link to="/" className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" onClick={() => setMobileMenuOpen(false)}>Dashboard</Link>
           
           <button onClick={() => toggleDropdown('projects')} className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 flex justify-between">
-            Projects <span>{mobileDropdown === 'projects' ? '?' : '?'}</span>
+            Projects <span>{mobileDropdown === 'projects' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</span>
           </button>
           {mobileDropdown === 'projects' && (
             <div className="pl-6 space-y-1 pb-2">
@@ -100,7 +100,7 @@ function Navbar({ setAuth }) {
           )}
 
           <button onClick={() => toggleDropdown('company')} className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 flex justify-between">
-            Company <span>{mobileDropdown === 'company' ? '?' : '?'}</span>
+            Company <span>{mobileDropdown === 'company' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</span>
           </button>
           {mobileDropdown === 'company' && (
             <div className="pl-6 space-y-1 pb-2">
@@ -111,7 +111,7 @@ function Navbar({ setAuth }) {
           )}
 
           <button onClick={() => toggleDropdown('analysis')} className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 flex justify-between">
-            Analysis <span>{mobileDropdown === 'analysis' ? '?' : '?'}</span>
+            Analysis <span>{mobileDropdown === 'analysis' ? <ChevronUp size={18} /> : <ChevronDown size={18} />}</span>
           </button>
           {mobileDropdown === 'analysis' && (
             <div className="pl-6 space-y-1 pb-2">
@@ -126,3 +126,4 @@ function Navbar({ setAuth }) {
 }
 
 export default Navbar;
+
