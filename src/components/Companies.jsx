@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../api';
+import Loader from './Loader';
 import { Edit, Trash2, Save } from 'lucide-react';
 import { Country, State } from 'country-state-city';
 import { COUNTRIES } from '../utils/countries';
@@ -29,6 +30,7 @@ const FULL_COUNTRIES = [
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState(null);
   
@@ -47,8 +49,10 @@ function Companies() {
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const res = await api.get('/admin/companies');
       setCompanies(res.data);
+      setLoading(false);
     } catch(err) { console.error(err); }
   };
 
@@ -294,7 +298,7 @@ function Companies() {
         </div>
       ) : (
         <div className="bg-white p-4 rounded shadow-sm">
-          <div className="overflow-x-auto border rounded mt-4">
+          {loading ? <Loader /> : <div className="overflow-x-auto border rounded mt-4">
             <table className="w-full text-left text-xs whitespace-nowrap">
               <thead className="bg-gray-100 border-b text-gray-600">
                 <tr>
@@ -330,8 +334,7 @@ function Companies() {
                   <tr><td colSpan="7" className="p-4 text-center text-gray-500">No companies found. Add one above.</td></tr>
                 )}
               </tbody>
-            </table>
-          </div>
+            </table></div>}
         </div>
       )}
       
@@ -340,3 +343,5 @@ function Companies() {
 }
 
 export default Companies;
+
+

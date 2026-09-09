@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
+import Loader from './Loader';
 import { Edit } from 'lucide-react';
 
 function Projects() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,9 +15,11 @@ function Projects() {
 
   const fetchData = async () => {
     try {
+      setLoading(true);
       const projRes = await api.get('/admin/projects');
       setProjects(projRes.data);
-    } catch(err) { console.error(err); }
+      setLoading(false);
+    } catch(err) { console.error(err); setLoading(false); }
   };
 
   return (
@@ -53,7 +57,7 @@ function Projects() {
       </div>
 
       {/* Data Table */}
-      <div className="overflow-x-auto border rounded">
+      {loading ? <Loader /> : <div className="overflow-x-auto border rounded">
         <table className="w-full text-left text-xs whitespace-nowrap">
           <thead className="bg-gray-100 border-b text-gray-600">
             <tr>
@@ -108,15 +112,14 @@ function Projects() {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </table></div>}
 
       <div className="flex justify-between items-center mt-3 text-xs text-gray-500">
         <span>Showing 1 to {projects.length || 0} of {projects.length || 0} entries</span>
         <div className="flex space-x-1">
-           <button className="px-2 py-1 bg-gray-100 rounded border">«</button>
+           <button className="px-2 py-1 bg-gray-100 rounded border">Â«</button>
            <button className="px-2 py-1 bg-blue-500 text-white rounded border">1</button>
-           <button className="px-2 py-1 bg-gray-100 rounded border">»</button>
+           <button className="px-2 py-1 bg-gray-100 rounded border">Â»</button>
         </div>
       </div>
     </div>
@@ -124,3 +127,4 @@ function Projects() {
 }
 
 export default Projects;
+

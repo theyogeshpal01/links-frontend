@@ -1,18 +1,22 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useParams } from 'react-router-dom';
 import { RefreshCw } from 'lucide-react';
 import api from '../api';
+import Loader from './Loader';
 
 function ProjectTabsLayout() {
   const { id } = useParams();
   const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProject = async () => {
       try {
+        setLoading(true);
         const res = await api.get(`/admin/projects/${id}`);
         setProject(res.data);
-      } catch (e) {
+        setLoading(false);
+      } catch (e) { setLoading(false);
         console.error("Error fetching project", e);
       }
     };
@@ -57,10 +61,11 @@ function ProjectTabsLayout() {
       </div>
 
       {/* Main Content Area */}
-      <Outlet context={{ project, setProject }} />
+      {loading ? <Loader fullScreen={false} /> : <Outlet context={{ project, setProject }} />}
 
     </div>
   );
 }
 
 export default ProjectTabsLayout;
+

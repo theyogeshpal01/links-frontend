@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Loader from './components/Loader';
 import Dashboard from './components/Dashboard';
 import Projects from './components/Projects';
 import Companies from './components/Companies';
@@ -28,7 +29,7 @@ function Layout({ children, setAuth }) {
         {children}
       </div>
       <footer className="bg-white border-t p-4 flex justify-between text-xs text-gray-500 font-medium">
-        <span>Copyright © 2026 Talk To Panel.</span>
+        <span>Copyright Â© 2026 Talk To Panel.</span>
         <span>Powered By : veritasInsights</span>
       </footer>
     </div>
@@ -47,7 +48,7 @@ function App() {
     setLoading(false);
   }, []);
 
-  if (loading) return null;
+  if (loading) return <Loader fullScreen={true} />;
 
   return (
     <BrowserRouter>
@@ -98,3 +99,4 @@ function App() {
 }
 
 export default App;
+

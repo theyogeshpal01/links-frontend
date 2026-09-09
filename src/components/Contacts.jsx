@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, Save } from 'lucide-react';
 import api from '../api';
+import Loader from './Loader';
 
 const COUNTRIES = [
   "Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria",
@@ -28,6 +29,7 @@ const COUNTRIES = [
 function Contacts() {
   const [showForm, setShowForm] = useState(false);
   const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [contactTypes, setContactTypes] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [search, setSearch] = useState('');
@@ -50,7 +52,9 @@ function Contacts() {
   }, []);
 
   const fetchContacts = async () => {
-    try { const res = await api.get('/admin/contacts'); setContacts(res.data); }
+    try { setLoading(true);
+      const res = await api.get('/admin/contacts'); setContacts(res.data);
+      setLoading(false); }
     catch(err) { console.error(err); }
   };
 
@@ -260,7 +264,7 @@ function Contacts() {
             <div className="flex items-center gap-2">Search: <input className="px-2 py-1 border rounded" value={search} onChange={e => setSearch(e.target.value)} /></div>
           </div>
 
-          <div className="overflow-x-auto border rounded">
+          {loading ? <Loader /> : <div className="overflow-x-auto border rounded">
             <table className="w-full text-xs text-left whitespace-nowrap">
               <thead className="text-gray-600 border-b bg-gray-50">
                 <tr>
@@ -304,8 +308,7 @@ function Contacts() {
                   <tr><td colSpan={8} className="p-4 text-center text-gray-400">No contacts found.</td></tr>
                 )}
               </tbody>
-            </table>
-          </div>
+            </table></div>}
         </>
       )}
 
@@ -327,3 +330,4 @@ function Contacts() {
 }
 
 export default Contacts;
+

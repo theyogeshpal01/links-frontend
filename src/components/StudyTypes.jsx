@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Edit, Trash2 } from 'lucide-react';
 import api from '../api';
+import Loader from './Loader';
 
 function StudyTypes() {
-  const [types, setTypes] = useState([]);
+  
+  const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ name: '', order: '', status: 'Enable' });
   const [editId, setEditId] = useState(null);
@@ -15,8 +17,10 @@ function StudyTypes() {
 
   const fetchTypes = async () => {
     try {
+      setLoading(true);
       const res = await api.get('/admin/study-types');
-      setTypes(res.data);
+      
+      setLoading(false);
     } catch(err) { console.error(err); }
   };
 
@@ -77,7 +81,7 @@ function StudyTypes() {
         <div className="flex items-center gap-2">Search: <input className="border rounded px-2 py-1" value={search} onChange={e => setSearch(e.target.value)} /></div>
       </div>
 
-      <div className="overflow-x-auto border rounded">
+      {loading ? <Loader /> : <div className="overflow-x-auto border rounded">
         <table className="w-full text-left text-sm whitespace-nowrap">
           <thead className="bg-gray-50 border-b text-gray-600">
             <tr>
@@ -107,8 +111,7 @@ function StudyTypes() {
               <tr><td colSpan={4} className="p-4 text-center text-gray-400">No study types found.</td></tr>
             )}
           </tbody>
-        </table>
-      </div>
+        </table></div>}
 
       {/* Add / Edit Modal */}
       {showModal && (
@@ -156,3 +159,4 @@ function StudyTypes() {
 }
 
 export default StudyTypes;
+
