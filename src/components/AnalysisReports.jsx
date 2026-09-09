@@ -71,14 +71,14 @@ function AnalysisReports() {
       {activeTab === 'summary' ? (
         <div className="space-y-6 mt-4">
            <h2 className="text-xl font-bold text-gray-800">Today's Total</h2>
-           <div className="grid grid-cols-4 gap-6 text-center">
+           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-center">
               <div className="bg-white p-6 border border-green-500 rounded-lg shadow-sm text-2xl font-medium">Completed {stats.completes}</div>
               <div className="bg-white p-6 border border-yellow-400 rounded-lg shadow-sm text-2xl font-medium">Disqualified {stats.disqualified}</div>
               <div className="bg-white p-6 border border-blue-400 rounded-lg shadow-sm text-2xl font-medium">Quotafull {stats.quotaFull}</div>
               <div className="bg-white p-6 border border-red-500 rounded-lg shadow-sm text-2xl font-medium">Security Term {stats.securityTerm}</div>
            </div>
 
-           <div className="grid grid-cols-2 gap-6 mt-6">
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
               <div className="bg-white rounded-lg border shadow-sm p-4">
                  <h3 className="text-lg font-bold mb-4 bg-gray-50 p-2 border-b">Top 10 Project Manager</h3>
                  <table className="w-full text-left text-sm">
@@ -121,3 +121,4 @@ function AnalysisReports() {
 }
 
 export default AnalysisReports;
+

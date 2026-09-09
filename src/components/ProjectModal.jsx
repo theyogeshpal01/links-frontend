@@ -54,7 +54,7 @@ function ProjectModal({ onClose }) {
             <h4 className="font-bold text-gray-700 bg-gray-100 p-2 rounded mb-4">Setup Requirements</h4>
             
             <form className="space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-gray-600 mb-1">Project Name</label>
                   <input className="w-full border p-1.5 rounded" value="DXD-8556-test" readOnly />
@@ -65,7 +65,7 @@ function ProjectModal({ onClose }) {
                 </div>
               </div>
               
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-gray-600 mb-1">Study Type</label>
                   <select className="w-full border p-1.5 rounded">
@@ -91,7 +91,7 @@ function ProjectModal({ onClose }) {
                 </div>
               </div>
 
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                 <div><label className="block text-gray-600 mb-1">CPC $</label><input className="w-full border p-1.5 rounded" value="1.00" readOnly /></div>
                 <div><label className="block text-gray-600 mb-1">Vendor Max CPC $</label><input className="w-full border p-1.5 rounded" value="0.40" readOnly /></div>
                 <div>
@@ -107,12 +107,12 @@ function ProjectModal({ onClose }) {
               </div>
 
               {/* Links section */}
-              <div className="grid grid-cols-2 gap-4 bg-gray-50 p-2 rounded">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-2 rounded">
                  <div>
                     <label className="block font-medium mb-1">Survey Friendly Name</label>
                     <input className="w-full border p-1.5 rounded" placeholder="(Project Name For Panel Members)" />
                  </div>
-                 <div className="grid grid-cols-2 gap-2">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     <div>
                         <label className="block font-medium mb-1">PV $</label>
                         <input className="w-full border p-1.5 rounded" value="0.00" readOnly />
@@ -126,7 +126,7 @@ function ProjectModal({ onClose }) {
 
               <div>
                   <h4 className="font-bold text-gray-700 bg-gray-100 p-2 rounded mt-6 mb-4">Expected Metrics & Data</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Req. Completes</label><input className="w-full border p-1.5 rounded" defaultValue="400"/></div>
                     <div><label className="block text-gray-600 mb-1">Max. Completes</label><select className="w-full border p-1.5 rounded"><option>No Max Limit</option></select></div>
                   </div>
@@ -153,18 +153,18 @@ function ProjectModal({ onClose }) {
              {/* Live Statistics */}
              <div className="bg-white border rounded shadow-sm p-4 text-xs flex-1">
                  <h4 className="font-bold text-gray-700 border-b pb-2 mb-4">Statistics</h4>
-                 <div className="grid grid-cols-3 gap-4 mb-4 text-center">
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-center">
                     <div><p className="text-gray-500">Total Hits</p><p className="font-bold text-blue-500 text-lg">1</p></div>
                     <div><p className="text-gray-500">Redirects</p><p className="font-bold text-blue-500 text-lg">0</p></div>
                     <div><p className="text-gray-500">Blocked</p><p className="font-bold text-red-500 text-lg">0</p></div>
                  </div>
-                 <div className="grid grid-cols-2 gap-4 mb-4 text-center border-t pt-4">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 text-center border-t pt-4">
                     <div><p className="text-gray-500">Completed</p><p className="font-bold text-green-500 text-lg">0</p></div>
                     <div><p className="text-gray-500">Disqualified</p><p className="font-bold text-orange-500 text-lg">0</p></div>
                     <div><p className="text-gray-500">Quota Full</p><p className="font-bold text-yellow-500 text-lg">0</p></div>
                     <div><p className="text-gray-500">Security</p><p className="font-bold text-red-500 text-lg">1</p></div>
                  </div>
-                 <div className="grid grid-cols-3 gap-2 border-t pt-4 text-center text-[10px] text-gray-500">
+                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 border-t pt-4 text-center text-[10px] text-gray-500">
                     <div><p>EPC</p><p className="font-bold text-gray-700">$0</p></div>
                     <div><p>CR</p><p className="font-bold text-gray-700">0%</p></div>
                     <div><p>IR</p><p className="font-bold text-gray-700">0%</p></div>
@@ -186,3 +186,4 @@ function ProjectModal({ onClose }) {
 }
 
 export default ProjectModal;
+

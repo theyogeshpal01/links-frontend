@@ -28,8 +28,8 @@ function ProjectMapForeignIDs() {
         Map <span className="underline font-medium">Redirect IDs</span> to <span className="underline font-medium">Foreign IDs</span>
       </h2>
       
-      <div className="flex items-start">
-        <div className="w-1/2">
+      <div className="flex flex-col md:flex-row items-start">
+        <div className="w-full md:w-1/2">
           <label className="block text-gray-700 text-sm mb-2 font-medium">
             Copy Redirect IDs :
           </label>
@@ -43,7 +43,7 @@ function ProjectMapForeignIDs() {
           </p>
         </div>
         
-        <div className="ml-6 mt-7">
+        <div className="ml-0 md:ml-6 mt-4 md:mt-7">
           <button onClick={handleDownload} className="bg-[#4eb3f7] hover:bg-blue-400 text-white px-4 py-1.5 rounded text-sm font-bold shadow-sm">
             Download Map IDs
           </button>
@@ -54,3 +54,4 @@ function ProjectMapForeignIDs() {
 }
 
 export default ProjectMapForeignIDs;
+

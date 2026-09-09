@@ -105,7 +105,7 @@ function AddProjectForm() {
             </div>
             {openSections.setup && (
               <div className="p-4 space-y-4 text-xs">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-600 mb-1">Project Name</label>
                     <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" />
@@ -118,7 +118,7 @@ function AddProjectForm() {
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-gray-600 mb-1">Study Type</label>
                     <select name="studyTypeId" value={formData.studyTypeId} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
@@ -142,7 +142,7 @@ function AddProjectForm() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-600 mb-1">Survey Link</label>
                     <textarea name="surveyLink" value={formData.surveyLink} onChange={handleChange} className="w-full border p-2 rounded h-20 focus:outline-none focus:border-blue-500"></textarea>
@@ -153,7 +153,7 @@ function AddProjectForm() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-gray-600 mb-1">CPC $</label>
                     <input type="number" step="0.01" name="cpc" value={formData.cpc} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" />
@@ -185,7 +185,7 @@ function AddProjectForm() {
             </div>
             {openSections.metrics && (
               <div className="p-4 space-y-4 text-xs">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-600 mb-1">Req. Completes :</label>
                     <input type="number" name="reqCompletes" value={formData.reqCompletes} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" />
@@ -241,7 +241,7 @@ function AddProjectForm() {
               {openSections.people ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </div>
             {openSections.people && (
-              <div className="p-4 grid grid-cols-2 gap-4 text-xs">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div>
                   <label className="block text-gray-600 mb-1">Client</label>
                   <select name="clientId" value={formData.clientId} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500">
@@ -280,7 +280,7 @@ function AddProjectForm() {
               {openSections.timeline ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </div>
             {openSections.timeline && (
-              <div className="p-4 grid grid-cols-2 gap-4 text-xs">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div>
                   <label className="block text-gray-600 mb-1">Start Date</label>
                   <input type="date" name="startDate" value={formData.startDate} onChange={handleChange} className="w-full border p-2 rounded focus:outline-none focus:border-blue-500" />
@@ -300,7 +300,7 @@ function AddProjectForm() {
               {openSections.memo ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </div>
             {openSections.memo && (
-              <div className="p-4 grid grid-cols-2 gap-4 text-xs">
+              <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                 <div>
                   <label className="block text-gray-600 mb-1">Notes</label>
                   <textarea name="notes" value={formData.notes} onChange={handleChange} className="w-full border p-2 rounded h-24 focus:outline-none focus:border-blue-500"></textarea>
@@ -351,3 +351,4 @@ function AddProjectForm() {
 }
 
 export default AddProjectForm;
+

@@ -58,7 +58,7 @@ function ProjectQuota() {
         <div className="mb-8">
           <h2 className="text-2xl font-bold mb-6">Add Quota</h2>
           <div className="border-b pb-6 mb-6">
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm text-gray-500 mb-1">Quota Name</label>
                 <input type="text" className="w-full border p-2 rounded text-sm" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
@@ -68,7 +68,7 @@ function ProjectQuota() {
                 <input type="number" className="w-full border p-2 rounded text-sm" value={formData.quota} onChange={e => setFormData({...formData, quota: e.target.value})} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label className="block text-sm text-gray-500 mb-1">Primary Qualification</label>
                 <select className="w-full border p-2 rounded text-sm" value={formData.qualificationId} onChange={e => setFormData({...formData, qualificationId: e.target.value})}>
@@ -97,7 +97,7 @@ function ProjectQuota() {
         </div>
       )}
 
-      <table className="w-full text-left border-collapse text-sm">
+      <div className="overflow-x-auto"><table className="w-full text-left border-collapse text-sm min-w-[600px]">
         <thead>
           <tr className="border-b text-gray-700 bg-gray-50">
             <th className="p-4 font-semibold">Quota Name</th>
@@ -128,10 +128,12 @@ function ProjectQuota() {
             ))
           )}
         </tbody>
-      </table>
+      </table></div>
     </div>
   );
 }
 
 export default ProjectQuota;
+
+
 

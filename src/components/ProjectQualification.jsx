@@ -139,7 +139,7 @@ function ProjectQualification() {
                         What is your age? <span className="ml-2 bg-[#00c6ff] text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Range</span>
                     </div>
                 </div>
-                <table className="w-full text-left border-collapse text-xs">
+                <div className="overflow-x-auto"><table className="w-full text-left border-collapse text-xs min-w-[600px]">
                     <thead>
                         <tr className="bg-gray-50 border-b">
                             <th className="p-3 w-48">Status</th>
@@ -162,7 +162,7 @@ function ProjectQualification() {
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                </table></div>
             </div>
             )}
 
@@ -177,7 +177,7 @@ function ProjectQualification() {
                         What is your gender? <span className="ml-2 bg-[#00c6ff] text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Dropdown</span>
                     </div>
                 </div>
-                <table className="w-full text-left border-collapse text-xs">
+                <div className="overflow-x-auto"><table className="w-full text-left border-collapse text-xs min-w-[600px]">
                     <thead>
                         <tr className="bg-gray-50 border-b">
                             <th className="p-3 w-48">Status</th>
@@ -202,7 +202,7 @@ function ProjectQualification() {
                             </React.Fragment>
                         ))}
                     </tbody>
-                </table>
+                </table></div>
             </div>
             )}
 
@@ -217,7 +217,7 @@ function ProjectQualification() {
                             {q.customQuestionName || 'Custom Question'} <span className="ml-2 bg-purple-500 text-white text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Custom</span>
                         </div>
                     </div>
-                    <table className="w-full text-left border-collapse text-xs">
+                    <div className="overflow-x-auto"><table className="w-full text-left border-collapse text-xs min-w-[600px]">
                         <thead>
                             <tr className="bg-gray-50 border-b">
                                 <th className="p-3 w-48">Status</th>
@@ -234,7 +234,7 @@ function ProjectQualification() {
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table></div>
                 </div>
             ))}
 
@@ -256,7 +256,7 @@ function ProjectQualification() {
                     </div>
                     
                     <div className="flex-1 overflow-y-auto space-y-6">
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm text-gray-500 mb-1">Profile Question</label>
                                 <select className="w-full border p-2 rounded text-sm text-gray-700" value={formData.profileQuestionId} onChange={e => {
@@ -289,7 +289,7 @@ function ProjectQualification() {
                                 <div className="bg-gray-50 p-2 font-bold text-sm border-b">Answer</div>
                                 <div className="p-0">
                                     {PROFILE_QUESTIONS.find(q => q.id === formData.profileQuestionId)?.fieldType === 'Range' ? (
-                                        <div className="p-4 grid grid-cols-2 gap-4">
+                                        <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <label className="block text-xs font-bold mb-1">Min Value</label>
                                                 <input type="number" className="w-full border p-2 rounded" value={formData.rangeStart} onChange={e => setFormData({...formData, rangeStart: e.target.value})} />
@@ -362,4 +362,6 @@ function ProjectQualification() {
 }
 
 export default ProjectQualification;
+
+
 

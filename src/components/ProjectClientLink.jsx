@@ -65,7 +65,7 @@ function ProjectClientLink() {
       <h2 className="text-xl text-gray-800 mb-4">Import Unique Links</h2>
 
       {/* Stat Cards */}
-      <div className="grid grid-cols-3 mb-6 text-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 mb-6 text-center">
         <div className="bg-[#b7d6e8] py-8 border-r border-white">
           <h3 className="text-xl text-gray-800 mb-2">Total Client Codes</h3>
           <p className="text-xl font-bold text-white">{totalCodes}</p>
@@ -143,4 +143,5 @@ function ProjectClientLink() {
 }
 
 export default ProjectClientLink;
+
 

@@ -177,7 +177,7 @@ function ProjectSuppliers() {
                   {companies.map(c => <option key={c._id} value={c._id}>{c.name}</option>)}
                 </select>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1 text-green-600">Success Postback URL</label>
                   <input type="text" className="w-full border p-2 rounded text-xs" placeholder="https://vendor.com/return?status=success&pid=[PID]" value={formData.successUrl} onChange={e => setFormData({...formData, successUrl: e.target.value})} />
@@ -231,5 +231,6 @@ function ProjectSuppliers() {
 }
 
 export default ProjectSuppliers;
+
 
 

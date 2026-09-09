@@ -157,12 +157,12 @@ function EditProjectForm() {
               </div>
               {openSections.setup && (
                 <div className="p-4 space-y-4 text-xs">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Project Name</label><input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div><label className="block text-gray-600 mb-1">Parent Project</label><select name="parentProjectId" value={formData.parentProjectId} onChange={handleChange} className="w-full border p-2 rounded"><option value="">Self Parent</option></select></div>
                   </div>
                   
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-gray-600 mb-1">Study Type</label>
                       <select name="studyTypeId" value={formData.studyTypeId} onChange={handleChange} className="w-full border p-2 rounded">
@@ -186,22 +186,22 @@ function EditProjectForm() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
                     <div><label className="block text-gray-600 mb-1">CPC $</label><input type="number" step="0.01" name="cpc" value={formData.cpc} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div><label className="block text-gray-600 mb-1">Vendor Max CPC $</label><input type="number" step="0.01" name="vendorMaxCpc" value={formData.vendorMaxCpc} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div><label className="block text-gray-600 mb-1">Invoice Currency</label><select name="invoiceCurrency" value={formData.invoiceCurrency} onChange={handleChange} className="w-full border p-2 rounded"><option>US Dollar</option></select></div>
                     <div><label className="block text-gray-600 mb-1">Conversion Rate</label><input type="number" step="0.01" name="conversionRate" value={formData.conversionRate} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Survey Friendly Name</label><input type="text" name="surveyFriendlyName" value={formData.surveyFriendlyName} onChange={handleChange} className="w-full border p-2 rounded" /></div>
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         <div><label className="block text-gray-600 mb-1">PV $</label><input type="number" step="0.01" name="pv" value={formData.pv} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                         <div><label className="block text-gray-600 mb-1">Setup Cost $</label><input type="number" step="0.01" name="setupCost" value={formData.setupCost} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Survey Link</label><textarea name="surveyLink" value={formData.surveyLink} onChange={handleChange} className="w-full border p-2 rounded h-20 text-[10px]"></textarea></div>
                     <div><label className="block text-gray-600 mb-1">Survey Test Link</label><textarea name="surveyTestLink" value={formData.surveyTestLink} onChange={handleChange} className="w-full border p-2 rounded h-20 text-[10px]"></textarea></div>
                   </div>
@@ -217,7 +217,7 @@ function EditProjectForm() {
               </div>
               {openSections.metrics && (
                 <div className="p-4 space-y-4 text-xs">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Req. Completes :</label><input type="number" name="reqCompletes" value={formData.reqCompletes} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                     <div><label className="block text-gray-600 mb-1">Max. Completes</label><select name="maxCompletes" value={formData.maxCompletes} onChange={handleChange} className="w-full border p-2 rounded"><option>No Max Limit</option></select></div>
                     <div><label className="block text-gray-600 mb-1">LOI</label><input type="text" name="loi" value={formData.loi} onChange={handleChange} className="w-full border p-2 rounded" /></div>
@@ -243,7 +243,7 @@ function EditProjectForm() {
                 {openSections.people ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
               {openSections.people && (
-                <div className="p-4 grid grid-cols-2 gap-4 text-xs">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   <div>
                     <label className="block text-gray-600 mb-1">Client</label>
                     <select name="clientId" value={formData.clientId} onChange={handleChange} className="w-full border p-2 rounded">
@@ -265,7 +265,7 @@ function EditProjectForm() {
                 {openSections.timeline ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
               {openSections.timeline && (
-                <div className="p-4 grid grid-cols-2 gap-4 text-xs">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
                   <div><label className="block text-gray-600 mb-1">Start Date</label><input type="date" name="startDate" value={formData.startDate} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                   <div><label className="block text-gray-600 mb-1">End Date</label><input type="date" name="endDate" value={formData.endDate} onChange={handleChange} className="w-full border p-2 rounded" /></div>
                 </div>
@@ -280,7 +280,7 @@ function EditProjectForm() {
               </div>
               {openSections.memo && (
                 <div className="p-4 space-y-4 text-xs">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div><label className="block text-gray-600 mb-1">Notes</label><textarea name="notes" value={formData.notes} onChange={handleChange} className="w-full border p-2 rounded h-24"></textarea></div>
                     <div><label className="block text-gray-600 mb-1">Project Brief (All Partner)</label><textarea name="projectBrief" value={formData.projectBrief} onChange={handleChange} className="w-full border p-2 rounded h-24"></textarea></div>
                     </div>
@@ -302,7 +302,7 @@ function EditProjectForm() {
                 {openSections.status ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
               {openSections.status && (
-                <div className="p-4 grid grid-cols-3 gap-4 text-xs">
+                <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                   <div><label className="block text-gray-600 mb-1">Status</label><select name="status" value={formData.status} onChange={handleChange} className="w-full border p-2 rounded"><option>Running</option><option>Closed</option></select></div>
                   <div><label className="block text-gray-600 mb-1">Invoice Status</label><select className="w-full border p-2 rounded"><option>Pending</option></select></div>
                   <div><label className="block text-gray-600 mb-1">Invoice Number</label><input type="text" className="w-full border p-2 rounded" value="0" readOnly /></div>
@@ -363,7 +363,7 @@ function EditProjectForm() {
               <div className="p-4 text-center text-xs">
                 
                 {/* Row 1 */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
                   <div>
                     <p className="text-gray-500 mb-1">Total Hits</p>
                     <p className="text-xl text-blue-500 font-light">{stats.totalHits}</p>
@@ -379,7 +379,7 @@ function EditProjectForm() {
                 </div>
 
                 {/* Row 2 */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
                   <div>
                     <p className="text-gray-500 mb-1">Completed</p>
                     <p className="text-xl text-green-500 font-light">{stats.completed}</p>
@@ -391,7 +391,7 @@ function EditProjectForm() {
                 </div>
 
                 {/* Row 3 */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
                   <div>
                     <p className="text-gray-500 mb-1">Quota Full</p>
                     <p className="text-xl text-yellow-600 font-light">{stats.quotaFull}</p>
@@ -405,7 +405,7 @@ function EditProjectForm() {
                 <hr className="my-4"/>
 
                 {/* Row 4 */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
                   <div>
                     <p className="text-gray-500 mb-1">EPC</p>
                     <p className="text-lg text-gray-800 font-light">${stats.epc}</p>
@@ -423,7 +423,7 @@ function EditProjectForm() {
                 <hr className="my-4"/>
 
                 {/* Row 5 */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
                   <div>
                     <p className="text-gray-500 mb-1">Average LOI</p>
                     <p className="text-lg text-gray-800 font-light">{stats.avgLoi} <span className="text-xs">min</span></p>
@@ -490,3 +490,4 @@ function EditProjectForm() {
 }
 
 export default EditProjectForm;
+

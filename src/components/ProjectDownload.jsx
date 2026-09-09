@@ -14,7 +14,7 @@ function ProjectDownload() {
 
   return (
     <div className="bg-white p-6 shadow-sm border-b min-h-[400px]">
-      <div className="grid grid-cols-3 gap-6 divide-x divide-gray-200">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 divide-y md:divide-y-0 md:divide-x divide-gray-200">
         
         {/* Download Project IDs */}
         <div className="pr-6">
@@ -57,3 +57,5 @@ function ProjectDownload() {
 }
 
 export default ProjectDownload;
+
+
