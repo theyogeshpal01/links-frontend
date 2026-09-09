@@ -38,7 +38,7 @@ function ProjectQuota() {
   const handleSave = async () => {
     if (!formData.name || !formData.quota) return alert('Enter Quota Name and Quota value');
     try {
-      await api.post(`/admin/projects/${id}/quotas`, formData);
+      const payload = {...formData}; if(!payload.qualificationId) delete payload.qualificationId; await api.post(`/admin/projects/${id}/quotas`, payload);
       setFormData({ name: '', quota: '', qualificationId: '', questionFieldType: 'Range' });
       fetchQuotas();
     } catch(e) { console.error(e); alert('Failed to save quota'); }
@@ -134,6 +134,7 @@ function ProjectQuota() {
 }
 
 export default ProjectQuota;
+
 
 
 
