@@ -5,6 +5,7 @@ import Loader from './Loader';
 
 function ContactTypes() {
   
+  const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ name: '', order: '', status: 'Enable' });
@@ -19,7 +20,7 @@ function ContactTypes() {
     try {
       setLoading(true);
       const res = await api.get('/admin/contact-types');
-      
+      setTypes(res.data);
       setLoading(false);
     } catch(err) { console.error(err); }
   };
@@ -159,4 +160,6 @@ function ContactTypes() {
 }
 
 export default ContactTypes;
+
+
 

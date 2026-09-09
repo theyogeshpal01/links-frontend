@@ -5,6 +5,7 @@ import Loader from './Loader';
 
 function StudyTypes() {
   
+  const [types, setTypes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [form, setForm] = useState({ name: '', order: '', status: 'Enable' });
@@ -19,7 +20,7 @@ function StudyTypes() {
     try {
       setLoading(true);
       const res = await api.get('/admin/study-types');
-      
+      setTypes(res.data);
       setLoading(false);
     } catch(err) { console.error(err); }
   };
@@ -159,4 +160,6 @@ function StudyTypes() {
 }
 
 export default StudyTypes;
+
+
 
