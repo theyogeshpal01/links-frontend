@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ChevronUp, ChevronDown, Monitor, Smartphone, Tablet, RefreshCw, FileText, Link as LinkIcon, AlertCircle, PlayCircle, Shield, ShieldAlert, CheckSquare } from 'lucide-react';
 import api from '../api';
@@ -113,6 +113,11 @@ function EditProjectForm() {
       const payload = {
           ...formData, supportedDevices: devices,
           studyTypeId: formData.studyTypeId || undefined,
+          cpc: formData.cpc !== '' ? Number(formData.cpc) : 0,
+          reqCompletes: formData.reqCompletes !== '' ? Number(formData.reqCompletes) : 0,
+          ir: formData.ir !== '' ? Number(formData.ir) : 0,
+          pointsToAward: formData.pointsToAward !== '' ? Number(formData.pointsToAward) : 0,
+          conversionRate: formData.conversionRate !== '' ? Number(formData.conversionRate) : 1,
           clientId: formData.clientId || undefined,
           clientContactId: formData.clientContactId || undefined,
           parentProjectId: formData.parentProjectId || undefined
@@ -458,7 +463,7 @@ function EditProjectForm() {
           <div className="bg-white rounded-lg p-6 w-full max-w-2xl">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-bold">Project End Pages (For Client)</h3>
-              <button className="text-gray-500 hover:text-gray-800" onClick={() => setShowEndPagesModal(false)}>✕</button>
+              <button className="text-gray-500 hover:text-gray-800" onClick={() => setShowEndPagesModal(false)}>âœ•</button>
             </div>
             <p className="text-sm text-gray-600 mb-4">
               Provide these links to your client. They must append the session tracking ID to the end of the URL (e.g., <code className="bg-gray-100 p-0.5">ttpid=[their_macro]</code>).
@@ -490,4 +495,5 @@ function EditProjectForm() {
 }
 
 export default EditProjectForm;
+
 

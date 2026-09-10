@@ -16,13 +16,16 @@ function AddProjectForm() {
   const toggleSection = (sec) => setOpenSections(prev => ({ ...prev, [sec]: !prev[sec] }));
 
   // Form Data State
+  const getToday = () => new Date().toISOString().split('T')[0];
+  const getNextMonth = () => { const d = new Date(); d.setMonth(d.getMonth() + 1); return d.toISOString().split('T')[0]; };
+
   const [formData, setFormData] = useState({
     name: '', parentProjectId: '', studyTypeId: '', country: '', language: 'English',
     surveyLink: '', surveyTestLink: '', cpc: '0.00', invoiceCurrency: 'US Dollar', conversionRate: '1.00',
     reqCompletes: '', maxCompletes: '', loi: '0:10', ir: '', pointsToAward: '0',
     supportedDevices: { desktop: true, mobile: true, tablet: true },
     clientId: '', clientContactId: '', projectManager: '', salesPerson: '',
-    startDate: '', endDate: '', notes: '', projectBrief: '', status: 'Select Status'
+    startDate: getToday(), endDate: getNextMonth(), notes: '', projectBrief: '', status: 'Select Status'
   });
 
   const handleChange = (e) => {
@@ -75,6 +78,11 @@ function AddProjectForm() {
           supportedDevices: devices,
           // nullify empty ObjectIds to prevent cast errors
           studyTypeId: formData.studyTypeId || undefined,
+          cpc: formData.cpc !== '' ? Number(formData.cpc) : 0,
+          reqCompletes: formData.reqCompletes !== '' ? Number(formData.reqCompletes) : 0,
+          ir: formData.ir !== '' ? Number(formData.ir) : 0,
+          pointsToAward: formData.pointsToAward !== '' ? Number(formData.pointsToAward) : 0,
+          conversionRate: formData.conversionRate !== '' ? Number(formData.conversionRate) : 1,
           clientId: formData.clientId || undefined,
           clientContactId: formData.clientContactId || undefined,
           parentProjectId: formData.parentProjectId || undefined,
@@ -351,5 +359,7 @@ function AddProjectForm() {
 }
 
 export default AddProjectForm;
+
+
 
 
