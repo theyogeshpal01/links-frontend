@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronUp, ChevronDown, Monitor, Smartphone, Tablet, Save } from 'lucide-react';
 import api from '../api';
@@ -17,7 +17,7 @@ function AddProjectForm() {
 
   // Form Data State
   const [formData, setFormData] = useState({
-    name: '', parentProjectId: '', studyTypeId: '', country: '', language: '',
+    name: '', parentProjectId: '', studyTypeId: '', country: '', language: 'English',
     surveyLink: '', surveyTestLink: '', cpc: '0.00', invoiceCurrency: 'US Dollar', conversionRate: '1.00',
     reqCompletes: '', maxCompletes: '', loi: '0:10', ir: '', pointsToAward: '0',
     supportedDevices: { desktop: true, mobile: true, tablet: true },
@@ -351,4 +351,5 @@ function AddProjectForm() {
 }
 
 export default AddProjectForm;
+
 
